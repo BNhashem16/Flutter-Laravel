@@ -103,22 +103,7 @@ class _LoginPageState extends State<LoginPage> {
               new Padding(
                 padding: new EdgeInsets.only(top: 44.0),
               ),
-              Container(
-                height: 50,
-                child: new FlatButton(
-                  onPressed: () =>
-                      Navigator.of(context).push(new MaterialPageRoute(
-                    builder: (BuildContext context) => new RegisterPage(),
-                  )),
-                  color: Colors.blue,
-                  child: new Text(
-                    'Register',
-                    style: new TextStyle(
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ),
+
             ],
           ),
         ),

@@ -59,7 +59,9 @@ class DatabaseHelper {
 
   // Fetch Data
   Future <List> getData() async{
-    var TOKEN = Read();
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'token';
+    final TOKEN = prefs.get(key) ?? 0;
     String myUrl = "$serverUrl/products/";
     http.Response response = await http.get(myUrl ,
         headers: {
@@ -71,7 +73,9 @@ class DatabaseHelper {
 
   // Fetch Data
   void deleteData(int id) async {
-    var TOKEN = Read();
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'token';
+    final TOKEN = prefs.get(key) ?? 0;
     String myUrl = '$serverUrl/products/$id/destroy';
     http.post(myUrl ,
         headers: {
@@ -105,8 +109,10 @@ class DatabaseHelper {
 
 
   // Edit Data
-  void editData(int id , String name , String price) async {
-    var TOKEN = Read();
+   editData(int id , String name , String price) async {
+    final prefs = await SharedPreferences.getInstance();
+    final key = 'token';
+    final TOKEN = prefs.get(key ) ?? 0;
     String myUrl = '$serverUrl/products/$id/update';
     http.post(myUrl ,
         headers: {
@@ -114,8 +120,8 @@ class DatabaseHelper {
           'Authorization' : 'Bearer $TOKEN',
         },
         body: {
-          'name' : 'سيدك وتاج رأسك أحمد هاشم يا إيمان الجزمة',
-          'price' : '7000000',
+          'name' : name,
+          'price' : price,
         }).then((response) {
       print('Response Status : ${response.statusCode}');
       print('Response Body : ${response.body}');
